@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ const people = [
+      {
+        name: "Carly",
+        yearOfBirth: 2018,
+      },
+      {
+        name: "Ray",
+        yearOfBirth: 1962,
+        yearOfDeath: 2011,
+      },
+      {
+        name: "Jane",
+        yearOfBirth: 1912,
+        yearOfDeath: 1941,
+      },
+    ]
+
+    const findTheOldest = function(array) {
+        const output = array.reduce((oldest, nextPerson) => {
+            const a = getAge(oldest.yearOfBirth, oldest.yearOfDeath);
+            const b = getAge(nextPerson.yearOfBirth, nextPerson.yearOfDeath);
+            return (a > b) ? oldest : nextPerson;
+            });
+        return output;
+    }
+ 
+
+//getAge function so we dont destroy the original data
+function getAge(birth, death) {
+    if (!death) {
+        death = new Date().getFullYear();
+    }
+    return death - birth;
+}
+
+
+
+
+
+
+
+
+
+/*     const findTheOldest = function(array) {
+        const oldest = array.sort( (a, b) => {
+            const currentYear = new Date().getFullYear();
+            if (a.yearOfDeath === undefined || b.yearOfDeath === undefined) {
+                a.yearOfDeath = currentYear;
+                b.yearOfDeath = currentYear;
+            }
+            const lastGuy = a.yearOfDeath - a.yearOfBirth;
+            const nextGuy = b.yearOfDeath - b.yearOfBirth;
+           
+            return (lastGuy > nextGuy) ? -1 : 1;
+        });
+        return oldest[0];
+    }; */
+
+
+
+    </script>
+
+
+
+</body>
+</html>
